@@ -1,0 +1,56 @@
+.users {
+    &__content {
+        &-title {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 125%;
+        }
+        &-main {
+            overflow: auto;
+            height: 400px;
+            @media (max-width: 767px) {
+                height: 100%;
+            }
+        }
+    }
+    &__wrapper {
+        padding-top: 20px;
+        margin: 0 auto;
+        max-width: 600px;
+        @media (max-width: 767px) {
+            padding-top: 10px;
+        }
+    }
+    &__login {
+        color: #0000CD;
+        display: flex;
+        background: #F3F3F3;
+        border-radius: 10px;
+        padding: 10px;
+        &-content {
+            margin: 0 0 0 7px;
+            color: #4CC7E9;
+            font-weight: 600;
+        }
+        &-text {
+            margin: 0;
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+        @media (max-width: 767px) {
+            font-size: 14px;
+            padding: 6px;
+        }
+    }
+}
+.container {
+    margin: 30px auto;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 767px) {
+        margin: 15px auto;
+    }
+}

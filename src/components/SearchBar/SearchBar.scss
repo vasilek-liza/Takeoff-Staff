@@ -1,0 +1,23 @@
+.search-bar {
+    width: 100%;
+    margin-right: 15px;
+    box-sizing: border-box;
+    &__input {
+        padding: 14px 0 13px 15px;
+        border-radius: 5px;
+        border: none;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        &:focus {
+            outline: 2px solid #0000CD;
+        }
+        @media (max-width: 767px) {
+            padding: 12px 0 10px 15px;
+        }
+    }
+    
+}
+.not-found {
+    color: red;
+}

@@ -1,0 +1,27 @@
+.header {
+    color: #0000CD;
+    font-weight: 600;
+    background: #F3F3F3;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    &__wrapper {
+        padding: 20px;
+        max-width: 1024px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @media (max-width: 767px) {
+            padding: 15px;
+        }
+    }
+    &__logo {
+        text-decoration: none;
+        color: #0000CD;
+        font-size: 22px;
+        padding: 10px 0;
+    }
+}

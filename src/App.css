@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 82px 20px 20px;
+}
+@media (max-width: 767px) {
+  .wrapper {
+    padding: 82px 15px 20px;
+  }
+}
