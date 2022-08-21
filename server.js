@@ -94,14 +94,6 @@ server.post('/api/auth/login', (req, res) => {
   console.log("Access Token:" + access_token);
   res.status(200).json({access_token})
 })
-server.get('/api/users/:id', (req, res) => {
-  
-})
-
-// server.put(`/api/users/1`, (req, res) => {
-//   const {id,username, password, last_name, first_name, is_active} = req.body;
-//   console.log("fdfdf")
-// })
 
 server.use(/^(?!\/auth).*$/,  (req, res, next) => {
   if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {

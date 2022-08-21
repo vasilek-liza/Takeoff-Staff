@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { userAPI } from "../../api/UserAPI";
 import { setAccount } from "../Auth/AuthSlice";
 import { IUser } from '../../interfaces/IUser';
@@ -15,16 +14,6 @@ export const getUsers = createAsyncThunk("getUsers",
     }
 });
 
-export const getUser = createAsyncThunk("getUser", 
-    async (payload: string, thunkAPI): Promise<any> => {
-    try {
-        const response = await userAPI.getUser(payload);
-        return response.data;
-    } catch (e: any) {
-        return thunkAPI.rejectWithValue(e.message);
-    }
-})
-
 export const updateUser =  createAsyncThunk("updateUser", 
     async (payload: {id: string, data: IUser}, thunkAPI): Promise<any> => {
     try {
@@ -35,6 +24,7 @@ export const updateUser =  createAsyncThunk("updateUser",
             password: payload.data.password!,
             is_active: payload.data.is_active,
         });
+        console.log(payload.data)
         return response.data;
     } catch (e: any) {
         return thunkAPI.rejectWithValue(e.message);
@@ -42,23 +32,11 @@ export const updateUser =  createAsyncThunk("updateUser",
 })
 
 export const deleteUser = createAsyncThunk("deteleUser", 
-    async (payload: {id: string}, thunkAPI): Promise<any> => {
+    async (id: string, thunkAPI): Promise<any> => {
     try {
-        const response = await userAPI.deleteUser(payload.id);
+        const response = await userAPI.deleteUser(id);
         return response.data;
     } catch (e: any) {
         return thunkAPI.rejectWithValue(e.message);
     }
 })
-
-export const fetchUsers = createAsyncThunk(
-    'user/fetchAll',
-    async (_, thunkAPI) => {
-        try {
-            const response = await axios.get<[]>('https://jsonplaceholder.typicode.com/user2s')
-            return response.data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователей")
-        }
-    }
-)

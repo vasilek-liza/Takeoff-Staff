@@ -32,7 +32,7 @@ export const User: React.FC<IUserProps> = ({user}) => {
             {resources.id}: {user.id}
           </div>
           <div className="container">
-            <CustomButton text={resources.redact} onClick={goToUserEdit}/>
+            {account.username !== user.username && <CustomButton text={resources.redact} onClick={goToUserEdit}/>}
             { user.is_active ?
               <span className="user__is_active true">
               </span> :

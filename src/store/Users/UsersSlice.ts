@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../interfaces/IUser";
-import { getUsers, getUser, updateUser, deleteUser } from "./UsersThunks";
+import { getUsers, updateUser, deleteUser } from "./UsersThunks";
 
 interface IUserState {
     users: IUser[],
@@ -80,12 +80,6 @@ export const UsersSlice = createSlice({
         },
         [getUsers.pending.type]: (state: IUserState, action: any) => {
             state.loading = true
-        },
-        [getUser.fulfilled.type]: (state: IUserState, action: any) => {
-            state.user = action.payload;
-        },
-        [getUser.rejected.type]: (state: IUserState, action: any) => {
-            state.userErrorMessage = action.payload;
         },
         [updateUser.rejected.type]: (state: IUserState, action: any) => {
             state.userErrorMessage = action.payload;

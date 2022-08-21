@@ -1,12 +1,12 @@
 import './DeleteUser.scss';
 import { CustomButton } from '../common/CustomButton';
 import { useNavigate } from 'react-router-dom';
-import { deleteUser, fetchUsers } from '../../store/Users/UsersThunks';
+import { deleteUser } from '../../store/Users/UsersThunks';
 import { useAppDispatch } from '../../hook'
 import { resources } from '../../resources';
 
 interface IDeleteUserProps {
-    id: string | undefined,
+    id: string,
     setOpen: (arg: boolean) => void,
 } 
 
@@ -16,7 +16,7 @@ export const DeleteUser: React.FC<IDeleteUserProps> = ({id, setOpen}) =>{
 
     const onDelete = async () => {
         try {
-          await dispatch(fetchUsers());
+          await dispatch(deleteUser(id));
           history('/users');
         } catch {}
     }

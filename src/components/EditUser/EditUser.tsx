@@ -1,54 +1,48 @@
 import './EditUser.scss';
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CustomButton } from '../common/CustomButton';
 import { resources } from '../../resources';
 import { CustomField } from '../common/CustomField';
-import { resetUser } from '../../store/Users/UsersSlice';
-import { getUser, updateUser } from '../../store/Users/UsersThunks';
+import { updateUser } from '../../store/Users/UsersThunks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DeleteUser } from '../DeleteUser/DeleteUser';
 import { useAppDispatch, useAppSelector } from '../../hook';
+import { IUser } from '../../interfaces/IUser';
 
 export const EditUser: React.FC = () =>{
   const dispatch = useAppDispatch();
   const [isDailog, setDialog] = useState(false);
   const history = useNavigate();
   const { id } = useParams();
-  const { error, user } = useAppSelector((state) => state.usersReducer);
-  const { account } = useAppSelector((state) => state.authReducer);
-
+  const { error } = useAppSelector((state) => state.usersReducer);
+  const { modifidedUsers } = useAppSelector((state) => state.usersReducer);
   const validationSchema = yup.object({
     username: yup.string()
       .matches(/^[\w.@+-]+$/, "Логин содержит недопустимые символы")
       .min(1, 'Минимальная длина 1 символ')
       .max(150, "Максимальная длина логина")
       .required('Введите логин пользователя'),
-    firstName: yup.string()
+    first_name: yup.string()
       .max(30, "Максимальная длина 30"),
-    lastName: yup.string()
+    last_name: yup.string()
       .max(150, "Максимальная длина 150"),
     password: yup.string()
       .min(1, 'Минимальная длина 1 символ')
       .max(128, 'Максимальная длина 128 символа')
       .required('Введите пароль'),
-    isActive: yup.boolean()
+    is_active: yup.boolean()
   });
 
-  useEffect(() => {
-      dispatch(getUser(id!));
-    return () => {
-      dispatch(resetUser())
-    }
-  }, []);
+  const userData: any = modifidedUsers.filter((user: IUser) => user.id == (id!))
 
   const initialValues = {
-    username: user.username, 
-    password: user.password,
-    firstName: user.first_name,
-    lastName: user.last_name,
-    isActive: user.is_active
+    username: userData[0].username, 
+    password: userData[0].password,
+    first_name: userData[0].first_name,
+    last_name: userData[0].last_name,
+    is_active: userData[0].is_active
   };
 
   const onSubmit = async (data: any) => {
@@ -67,13 +61,13 @@ export const EditUser: React.FC = () =>{
     history('/users');
   }
 
-  if (!user.id) {
+  if (!initialValues) {
     return <p className='main__loading'>Загрузка</p>;
   }
 
   return (
     <div className="edit-user">
-      <div className="edit-user__title">{ resources.profile + " " + user.username }</div>
+      <div className="edit-user__title">{ resources.profile + " " +initialValues.username }</div>
       { error ? <div className="edit-user__error"> {resources.errorRegistration}</div> : ""}
       <Formik
         initialValues={initialValues}
@@ -86,38 +80,28 @@ export const EditUser: React.FC = () =>{
               <CustomField 
                 name={"username"} 
                 type={"input"}
-                error={errors.username}
-                touched={touched.username}
                 placeholder={resources.username}
               />
               <CustomField 
-                name={"firstName"} 
+                name={"first_name"} 
                 type={"input"}
-                error={errors.firstName}
-                touched={touched.firstName}
                 placeholder={resources.first_name}
               />
               <CustomField 
-                name={"lastName"} 
+                name={"last_name"} 
                 type={"input"}
-                error={errors.lastName}
-                touched={touched.lastName}
                 placeholder={resources.last_name}
               />
               <CustomField 
                 name={"password"} 
                 type={"password"}
-                error={errors.password}
-                touched={touched.password}
                 placeholder={resources.password}
               />
               <div className="container">
                 {resources.isActive}
                 <CustomField 
-                  name={"isActive"} 
+                  name={"is_active"} 
                   type={"checkbox"}
-                  error={errors.isActive}
-                  touched={touched.isActive}
                 />
               </div>
               <div className="edit-user__buttons">
@@ -130,11 +114,11 @@ export const EditUser: React.FC = () =>{
             </Form>
         )}
       </Formik>
-      {/* <div className="edit-user__buttons">
-        {account.is_superuser && <CustomButton text={resources.remove} type="input"onClick={openPopUp} />}
+      <div className="edit-user__buttons">
+        <CustomButton text={resources.remove} onClick={openPopUp} />
         <CustomButton text={resources.cancel} onClick={onCancel} />
       </div>
-      { isDailog ? <DeleteUser id={id} setOpen={setDialog} /> : ""} */}
+      { isDailog ? <DeleteUser id={id as string} setOpen={setDialog} /> : ""}
   </div>
   );
 }

@@ -21,15 +21,15 @@ export const Registration: React.FC = () =>{
       .min(1, 'Минимальная длина 1 символ')
       .max(150, "Максимальная длина логина")
       .required('Введите логин пользователя'),
-    firstName: yup.string()
+    first_name: yup.string()
       .max(30, "Максимальная длина 30"),
-    lastName: yup.string()
+    last_name: yup.string()
       .max(150, "Максимальная длина 150"),
     password: yup.string()
       .min(1, 'Минимальная длина 1 символ')
       .max(128, 'Максимальная длина 128 символа')
       .required('Введите пароль'),
-    isActive: yup.boolean()
+    is_active: yup.boolean()
   });
 
   const [initialValues ] = useState<IUser>({ 
@@ -76,14 +76,14 @@ export const Registration: React.FC = () =>{
                 placeholder={resources.username}
               />
               <CustomField 
-                name="firstName"
+                name="first_name"
                 type="input"
                 error={errors.first_name}
                 touched={touched.first_name}
                 placeholder={resources.first_name}
               />
               <CustomField 
-                name="lastName"
+                name="last_name"
                 type="input"
                 error={errors.last_name}
                 touched={touched.last_name}
@@ -99,7 +99,7 @@ export const Registration: React.FC = () =>{
               <div className="container">
                 {resources.isActive}
                 <CustomField 
-                  name="isActive"
+                  name="is_active"
                   type="checkbox"
                   error={errors.is_active}
                   touched={touched.is_active}

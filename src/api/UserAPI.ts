@@ -1,5 +1,4 @@
 import { BaseAPI } from "./BaseAPI";
-import { IUserData } from '../interfaces/IUserData';
 import { IUser } from "../interfaces/IUser";
 
 class UserAPI extends BaseAPI {
@@ -12,16 +11,13 @@ class UserAPI extends BaseAPI {
         return this.getMethod("/users");
     }
 
-    getUser = (id: string) => {
-        return this.getMethod("/api/users/" + id);
-    }
-
     updateUser = (id: string, data: IUser) => {
-        return this.putMethod("/api/users/" + id + "/", data);
+        console.log(data)
+        return this.putMethod("/users/" + id + "/", data);
     }
 
     deleteUser = (id: string) => {
-        return this.deleteMethod("/api/users/" + id);
+        return this.deleteMethod("/users/" + id);
     }
 }
 

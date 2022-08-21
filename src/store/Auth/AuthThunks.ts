@@ -3,7 +3,6 @@ import { authAPI } from "../../api/AuthAPI";
 import { registrationAPI } from "../../api/Registration";
 import { userAPI } from "../../api/UserAPI";
 import { setUsername } from "./AuthSlice";
-import { IUser } from '../../interfaces/IUser';
 import { IUserData } from "../../interfaces/IUserData";
 
 export const getToken = createAsyncThunk("getToken", async  (payload: IUserData, thunkAPI): Promise<any> => {

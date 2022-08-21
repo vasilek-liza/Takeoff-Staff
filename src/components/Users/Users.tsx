@@ -47,7 +47,7 @@ export function  Users() {
             <SortButton />
           </div>
           <div className="users__content-main">
-            {modifidedUsers.map((user: IUser, index: string) => (
+            {modifidedUsers.map((user: IUser, index: number) => (
               <User key={index} user={user} />
             ))} 
           { !loading && !modifidedUsers.length && <NotFound /> }
