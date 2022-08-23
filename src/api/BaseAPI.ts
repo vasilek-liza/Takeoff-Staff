@@ -13,8 +13,8 @@ export class BaseAPI {
         });
     }
 
-    getMethod = (url: string) => {
-        return this.instance.get(url);
+    getMethod = <T>(url: string) => {
+        return this.instance.get<string, AxiosPromise<T>>(url);
     };
 
     postMethod = <T, K>(url: string, data: T) => {
@@ -26,7 +26,7 @@ export class BaseAPI {
     }
 
     putchMethod = <T>(url: string, data: T) => {
-        return this.instance.patch(url, data);
+        return this.instance.patch<string, AxiosPromise<T>>(url, data);
     }
 
     deleteMethod = <T>(id: string) => {

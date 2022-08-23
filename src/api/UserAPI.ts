@@ -9,7 +9,7 @@ class UserAPI extends BaseAPI {
     }
 
     getUsers = () => {
-        return this.getMethod("/users");
+        return this.getMethod<IUser[]>("/users");
     }
 
     updateUser = (id: string, data: IUser) => {
