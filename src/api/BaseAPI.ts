@@ -1,4 +1,4 @@
-import Axios, { AxiosInstance } from "axios";
+import Axios, { AxiosInstance, AxiosPromise } from "axios";
 
 export class BaseAPI {
     static baseURL = "http://localhost:3000/";
@@ -17,19 +17,19 @@ export class BaseAPI {
         return this.instance.get(url);
     };
 
-    postMethod = <T>(url: string, data: T) => {
-        return this.instance.post(url, data);
+    postMethod = <T, K>(url: string, data: T) => {
+        return this.instance.post<T, AxiosPromise<K>>(url, data);
     };
 
     putMethod = <T>(url: string, data: T) => {
-        return this.instance.put(url, data);
+        return this.instance.put<string, AxiosPromise<T>>(url, data);
     }
 
     putchMethod = <T>(url: string, data: T) => {
         return this.instance.patch(url, data);
     }
 
-    deleteMethod = (id: string) => {
-        return this.instance.delete(id)
+    deleteMethod = <T>(id: string) => {
+        return this.instance.delete<string, AxiosPromise<T>>(id)
     }
 }

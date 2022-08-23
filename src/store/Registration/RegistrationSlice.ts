@@ -1,14 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IUser } from "../../interfaces/IUser";
 import { registration } from "./RegistrationThunks";
 
 type State = {
-    data: [],
+    data: string,
     error: string,
     loading: boolean
 };
 
 const initialState: State = {
-    data: [],
+    data: "",
     error: "",
     loading: false
 };
@@ -20,17 +21,17 @@ export const RegistrationSlice = createSlice({
 
     },
     extraReducers: {
-        [registration.pending.type]: (state: any) => {
+        [registration.pending.type]: (state) => {
             state.loading = true
         },
-        [registration.fulfilled.type]: (state: any, action: any) => {
+        [registration.fulfilled.type]: (state, action: PayloadAction<string>) => {
             state.loading = false
             state.error = ""
             state.data = action.payload
         },
-        [registration.rejected.type]: (state: any, action: any) => {
+        [registration.rejected.type]: (state, action: PayloadAction<string>) => {
             state.loading = false
-            state.data = []
+            state.data = ""
             state.error = action.payload
         }
     },

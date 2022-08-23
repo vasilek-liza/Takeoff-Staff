@@ -1,10 +1,11 @@
 import { BaseAPI } from "./BaseAPI";
 import { IUser } from "../interfaces/IUser";
+import { IHeaderDefaults } from "../interfaces/IHeaderDefaults";
 
 class UserAPI extends BaseAPI {
 
     setToken = (token: string) => {
-        (this.instance.defaults.headers as any)["Authorization"] = "Bearer " + token;
+        (this.instance.defaults.headers as IHeaderDefaults).Authorization = "Bearer " + token;
     }
 
     getUsers = () => {
@@ -12,12 +13,11 @@ class UserAPI extends BaseAPI {
     }
 
     updateUser = (id: string, data: IUser) => {
-        console.log(data)
-        return this.putMethod("/users/" + id + "/", data);
+        return this.putMethod<IUser>("/users/" + id + "/", data);
     }
 
     deleteUser = (id: string) => {
-        return this.deleteMethod("/users/" + id);
+        return this.deleteMethod<void>("/users/" + id);
     }
 }
 

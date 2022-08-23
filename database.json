@@ -1,1 +1,83 @@
-{"users":[{"id":1,"username":"vasilevskaya@mail.ru","password":"vasilevskaya","first_name":"Kate","last_name":"Ivanova"},{"username":"bbbbvasilevskaya@mail.ru","first_name":"cvc","last_name":"cccvc","password":"vasilevskayabbbfgbf","id":7},{"id":8,"username":"vasilevskayalol@mail.ru","password":"vasilevskaya","last_name":"lol","first_name":"lol","is_active":false},{"id":13,"username":"hhhhvasilevskaya@mail.ru","password":"vasilevskaya","last_name":"hhh","first_name":"hhhh","is_active":true},{"id":14,"username":"ahhhhhvasilevskaya@mail.ru","password":"vasilevskaya","last_name":"hhhh","first_name":"hhhh","is_active":false},{"id":15,"username":"vaa@mail.ru","password":"vasilevskaya","last_name":"sd","first_name":"va","is_active":false},{"id":16,"username":"vasilevskaya@mail.ru1231231","password":"vasilevskaya","last_name":"lox1","first_name":"lox","is_active":false},{"id":17,"username":"namevasilevskaya@mail.ru","password":"vasilevskaya","last_name":"name","first_name":"name","is_active":false},{"id":18,"username":"vasilevtestskaya@mail.ru","password":"vasilevskaya","last_name":"test1","first_name":"test1","is_active":true},{"id":19,"username":"vasilevskayatest@mail.ru","password":"vasilevskaya","last_name":"test2","first_name":"test2","is_active":false},{"id":20,"username":"vasilevgdfgdfgskaya@mail.ru","password":"vasilevskaya","last_name":"василевская","first_name":"elizaveta","is_active":false}]}
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "vasilevskaya@mail.ru",
+      "password": "vasilevskaya",
+      "first_name": "Kate",
+      "last_name": "Ivanova"
+    },
+    {
+      "id": 14,
+      "username": "ahhhhhvasilevskaya@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "hhhh",
+      "first_name": "hhhh",
+      "is_active": false
+    },
+    {
+      "id": 15,
+      "username": "vaa@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "sd",
+      "first_name": "va",
+      "is_active": false
+    },
+    {
+      "id": 16,
+      "username": "vasilevskaya@mail.ru1231231",
+      "password": "vasilevskaya",
+      "last_name": "lox1",
+      "first_name": "lox",
+      "is_active": false
+    },
+    {
+      "id": 17,
+      "username": "namevasilevskaya@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "name",
+      "first_name": "name",
+      "is_active": false
+    },
+    {
+      "id": 18,
+      "username": "vasilevtestskaya@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "test1",
+      "first_name": "test1",
+      "is_active": true
+    },
+    {
+      "id": 19,
+      "username": "vasilevskayatest@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "test2",
+      "first_name": "test2",
+      "is_active": false
+    },
+    {
+      "id": 20,
+      "username": "vasilevgdfgdfgskaya@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "василевская",
+      "first_name": "elizaveta",
+      "is_active": false
+    },
+    {
+      "id": 21,
+      "username": "vasilev1skaya@mail.ru",
+      "password": "vasilevskaya",
+      "last_name": "d",
+      "first_name": "d",
+      "is_active": false
+    },
+    {
+      "username": "vasilevskaggya@mail.ru",
+      "first_name": "1gg",
+      "last_name": "gg",
+      "password": "vasilevskaya",
+      "is_active": false,
+      "id": 22
+    }
+  ]
+}

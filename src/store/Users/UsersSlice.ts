@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../interfaces/IUser";
 import { getUsers, updateUser, deleteUser } from "./UsersThunks";
 
@@ -38,14 +38,14 @@ export const UsersSlice = createSlice({
         sorting(state: IUserState) {
             state.sortUp = !state.sortUp;
             if (state.sortUp) {
-                state.modifidedUsers.sort((a: any, b: any) => b.id - a.id);
+                state.modifidedUsers.sort((a, b) => +b.id! - +a.id!);
             } else {
-                state.modifidedUsers.sort((a: any, b: any) => a.id - b.id);
+                state.modifidedUsers.sort((a, b) => +b.id! - +a.id!);
             }
         },
-        searchUsers(state: IUserState, value: any) {
-            state.modifidedUsers = state.users.filter((user : any)=> {
-                return user.username.includes(value.payload);
+        searchUsers(state: IUserState, value: PayloadAction<string>) {
+            state.modifidedUsers = state.users.filter((user)=> {
+                return user.username!.includes(value.payload);
             });
         },
         resetUsers(state: IUserState) {
@@ -68,20 +68,20 @@ export const UsersSlice = createSlice({
         }
     },
     extraReducers: {
-        [getUsers.fulfilled.type]: (state: IUserState, action: any) => {
+        [getUsers.fulfilled.type]: (state: IUserState, action: PayloadAction<IUser[]>) => {
             state.error = ""
             state.loading = false
             state.users = action.payload
             state.modifidedUsers = action.payload
         },
-        [getUsers.rejected.type]: (state: IUserState, action: any) => {
+        [getUsers.rejected.type]: (state: IUserState, action: PayloadAction<string>) => {
             state.users = []
             state.error = action.payload
         },
-        [getUsers.pending.type]: (state: IUserState, action: any) => {
+        [getUsers.pending.type]: (state) => {
             state.loading = true
         },
-        [updateUser.rejected.type]: (state: IUserState, action: any) => {
+        [updateUser.rejected.type]: (state: IUserState, action: PayloadAction<string>) => {
             state.userErrorMessage = action.payload;
         },
     },

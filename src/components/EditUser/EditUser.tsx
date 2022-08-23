@@ -35,7 +35,7 @@ export const EditUser: React.FC = () =>{
     is_active: yup.boolean()
   });
 
-  const userData: any = modifidedUsers.filter((user: IUser) => user.id == (id!))
+  const userData = modifidedUsers.filter((user: IUser) => user.id == (id!))
 
   const initialValues = {
     username: userData[0].username, 
@@ -45,7 +45,7 @@ export const EditUser: React.FC = () =>{
     is_active: userData[0].is_active
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: IUser) => {
     try {
       await dispatch(updateUser({ id: id!, data }));
     } finally {

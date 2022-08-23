@@ -4,7 +4,7 @@ import{ IUser } from '../../interfaces/IUser';
 
 export const registration = createAsyncThunk(
     "registration", 
-    async (payload: IUser, thunkAPI): Promise<any> => {
+    async (payload: IUser, thunkAPI) => {
     try {
         const { username, first_name, last_name, password, is_active } = payload;
         const response = await registrationAPI.registration({
@@ -16,9 +16,9 @@ export const registration = createAsyncThunk(
         })
 
         await new Promise(res => setTimeout(res, 500));
-        return response.data
-    } catch (e: any) {
-        return thunkAPI.rejectWithValue(e.message);
+        return response.data.access_token
+    } catch (e) {
+        return thunkAPI.rejectWithValue((e as Error).message);
     }
 });
 

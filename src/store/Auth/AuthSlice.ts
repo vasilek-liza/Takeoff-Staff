@@ -44,20 +44,20 @@ export const AuthSlice = createSlice({
         setUsername (state: IState, action: PayloadAction<string>) {
             state.username = action.payload;
         },
-        setAccount(state: IState, action: PayloadAction<any>) {
-            state.account = action.payload.find((user?: IUser) => user!.username == state.username);
+        setAccount(state: IState, action: PayloadAction<IUser[]>) {
+            state.account = action.payload.find((user?: IUser) => user!.username == state.username)!;
         }
     },
     extraReducers: {
         [getToken.pending.type]: (state: IState) => {
             state.loading = true
         },
-        [getToken.fulfilled.type]: (state: IState, action: PayloadAction<any>) => {
+        [getToken.fulfilled.type]: (state: IState, action: PayloadAction<string>) => {
             state.loading = false
             state.error = ""
             state.token = action.payload
         },
-        [getToken.rejected.type]: (state: IState, action: PayloadAction<any>) => {
+        [getToken.rejected.type]: (state: IState, action: PayloadAction<string>) => {
             state.loading = false
             state.token = ""
             state.error = action.payload
